@@ -1,5 +1,10 @@
 <template>
-    <div><i>({{ fine.id }})</i> {{ fine.text }}
+    <div><i>({{ fine.id }})</i>
+        <div>ФИО: {{ fine.text }}</div>
+        <div>Номер машины: {{ fine.num_car }}</div>
+        <div>Номер прав: {{ fine.num_pas }}</div>
+        <div>Тип нарушения: {{ fine.type }}</div>
+        <div>Сумма штрафа: {{ fine.sum }}</div>
     <span>
         <input type="button" value="Edit" @click="edit" />
         <input type="button" value="X" @click="del" />

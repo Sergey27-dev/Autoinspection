@@ -10,7 +10,9 @@
 <script>
     import FinesList from "../components/fines/FineList.vue"
     export default {
-        components: {FinesList},
+        components: {
+            FinesList
+        },
         data() {
             return{
                 fines: frontendData.fines
