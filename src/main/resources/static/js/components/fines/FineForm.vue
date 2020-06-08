@@ -1,12 +1,30 @@
 <template>
-    <div>
-        <div><input type="text" placeholder="ФИО" v-model="text"/></div>
-        <div><input type="text" placeholder="Номер машины" v-model="num_car"></div>
-        <div><input type="text" placeholder="Номер прав" v-model="num_pas"></div>
-        <div><input type="text" placeholder="Вид нарушения" v-model="type"></div>
-        <div><input type="text" placeholder="Сумма штрафа" v-model="sum"></div>
-        <input type="button" value="Save" @click="save"/>
-    </div>
+    <v-layout justify-start align-center column>
+        <v-text-field
+                placeholder="ФИО"
+                v-model="text"
+        ></v-text-field>
+        <v-text-field
+                placeholder="Номер машины"
+                v-model="num_car"
+        ></v-text-field>
+        <v-text-field
+                placeholder="Номер прав"
+                v-model="num_pas"
+        ></v-text-field>
+        <v-text-field
+                placeholder="Вид нарушения"
+                v-model="type"
+        ></v-text-field>
+        <v-text-field
+                placeholder="Сумма штрафа"
+                v-model="sum"
+        ></v-text-field>
+        <v-layout row>
+            <v-btn v-on:click="save" class="mr-2" color="green">Сохранить</v-btn>
+            <v-btn href="/fine">Назад</v-btn>
+        </v-layout>
+    </v-layout>
 </template>
 
 <script>
@@ -30,19 +48,21 @@
                 id: ''
             }
         },
-        watch: {
-            fineAttr(newVal, oldVal){
-                this.sum = newVal.sum
-                this.type = newVal.type
-                this.num_pas = newVal.num_pas
-                this.num_car = newVal.num_car
-                this.text = newVal.text
-                this.id = newVal.id
+
+        created() {
+            if(this.fineAttr!=null){
+                this.sum = this.fineAttr.sum
+                this.type = this.fineAttr.type
+                this.num_pas = this.fineAttr.num_pas
+                this.num_car = this.fineAttr.num_car
+                this.text = this.fineAttr.text
+                this.id = this.fineAttr.id
             }
+
         },
         methods: {
             save() {
-                var fine = {
+                let fine = {
                     sum: this.sum,
                     type: this.type,
                     num_pas: this.num_pas,
@@ -62,6 +82,7 @@
                             this.num_pas = ''
                             this.num_car = ''
                             this.text= ''
+                            this.$router.push('/fine')
                         })
                     )
                 }else{
@@ -74,6 +95,7 @@
                             this.num_pas = ''
                             this.num_car = ''
                             this.text= ''
+                            this.$router.push('/fine')
                         })
                     )
                 }

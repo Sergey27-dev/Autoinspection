@@ -1,8 +1,8 @@
 <template>
     <div>
-        <div>
+        <v-content>
             <fines-list :fines="fines" />
-        </div>
+        </v-content>
     </div>
 
 </template>
